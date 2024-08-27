@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "name": "new test item",
+  "itemtype": "appetizer",
+  "description": "your description",
+  "price": 9.99,
+  "imageid": "asdfb"
+}
