@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"net/http"
+	reservations "restaurant-catalog/services"
 	rc "restaurant-catalog/structs"
 
 	"github.com/gin-gonic/gin"
@@ -39,9 +40,20 @@ func main() {
 	router.GET("/API/v1/MenuItems", getMenuItems)
 	router.GET("/API/v1/MenuItems/:id", getMenuItemsByRestaurantId)
 	router.POST("/API/v1/SaveMenuItem", saveMenuItem)
+
+	//reservations API endpoints
+	router.GET("/API/v1/Reservations", createReservations)
+	// router.POST("/API/v1/Reservations", createReservations)
+
 	// TODO change this to environment variable
 	router.Run("localhost:8080")
 
+}
+
+func createReservations(c *gin.Context) {
+	//get data from form
+	reservations.SendReservationEmail()
+	c.IndentedJSON(http.StatusOK, "Email Sent")
 }
 
 func getAllRestaurants(c *gin.Context) {
@@ -54,15 +66,15 @@ func getRestaurantById(c *gin.Context) {
 
 }
 
-func getRestaurantByIdFromDb(id string) ([]rc.Restaurant, error) {
-	// var restaurants rc.Restaurant
-	// // TODO get menuItems from DB
+// func getRestaurantByIdFromDb(id string) ([]rc.Restaurant, error) {
+// var restaurants rc.Restaurant
+// // TODO get menuItems from DB
 
-	// if restaurant {
-	// 	return nil, errors.New("No restaurants found")
-	// }
-	// return restaurant, nil
-}
+// if restaurant {
+// 	return nil, errors.New("No restaurants found")
+// }
+// return restaurant, nil
+// }
 
 func saveRestaurant(c *gin.Context) {
 
