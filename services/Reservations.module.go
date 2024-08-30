@@ -15,7 +15,7 @@ func SendReservationEmail() {
 	var message = getMessageBody()
 
 	//email service
-	emailService := email.NewEmailService(587, "smtp.gmail.com", "reservationsfoodiecats@gmail.com", "wjsgoywvuqsnfoyp")
+	emailService := email.NewEmailService(587, "smtp.gmail.com", "", "")
 	isSEnd, err := emailService.SendEmail("knives.thao@gmail.com", "Reservation Topic", message)
 	if err != nil {
 		log.Fatalf("Error sending email: %s", err)
